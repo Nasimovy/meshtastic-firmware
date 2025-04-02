@@ -186,6 +186,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Touchscreen
 // -----------------------------------------------------------------------------
 #define FT6336U_ADDR 0x48
+#define CST226SE_ADDR 0x15
 
 // -----------------------------------------------------------------------------
 // BIAS-T Generator

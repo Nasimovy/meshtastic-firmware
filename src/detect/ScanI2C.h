@@ -70,6 +70,7 @@ class ScanI2C
         DFROBOT_RAIN,
         DPS310,
         LTR390UV,
+        CST226SE,
     } DeviceType;
 
     // typedef uint8_t DeviceAddress;
