@@ -3,6 +3,16 @@
 #define I2C_SDA 21
 #define I2C_SCL 22
 
+// Display ST7796 (TFT)--> addon
+#define ST7796_MOSI 14
+#define ST7796_SCLK
+#define ST7796_CS
+#define ST7796_DC
+#define ST7796_RESET
+#define ST7796_BACKLIGHT_EN 4
+#define ST7796_BL 4
+#define TFT_BL 4
+
 #define BUTTON_PIN 38 // The middle button GPIO on the T-Beam
 // #define BUTTON_PIN_ALT 13 // Alternate GPIO for an external button if needed. Does anyone use this? It is not documented
 //  anywhere.
