@@ -757,7 +757,7 @@ static LGFX *tft = nullptr;
 #endif
 
 #if defined(ST7701_CS) || defined(ST7735_CS) || defined(ST7789_CS) || defined(ILI9341_DRIVER) || defined(ILI9342_DRIVER) ||      \
-    defined(RAK14014) || defined(HX8357_CS) || (ARCH_PORTDUINO && HAS_SCREEN != 0)
+    defined(RAK14014) || defined(HX8357_CS) || defined(ST7796_CS) || (ARCH_PORTDUINO && HAS_SCREEN != 0)
 #include "SPILock.h"
 #include "TFTDisplay.h"
 #include <SPI.h>

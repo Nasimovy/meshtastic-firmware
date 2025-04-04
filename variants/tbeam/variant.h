@@ -5,8 +5,8 @@
 
 // Display ST7796 (TFT) --> addon
 #define SPI_FREQUENCY 40000000
-#define SPI_READ_FREQUENCY 16000000
-#define ST7796_SPI_HOST VSPI_HOST
+#define SPI_READ_FREQUENCY 20000000
+#define ST7796_SPI_HOST SPI3_HOST
 #define ST7796_SDA 14
 #define ST7796_SCK 15
 #define ST7796_CS 25
@@ -15,11 +15,11 @@
 #define ST7796_BACKLIGHT_EN 4
 #define ST7796_BL 4
 #define TFT_BL 4
-#define TFT_HEIGHT 222
-#define TFT_WIDTH 480
+#define TFT_HEIGHT 480
+#define TFT_WIDTH 222
 #define TFT_OFFSET_X 0
 #define TFT_OFFSET_Y 0
-#define TFT_OFFSET_ROTATION 0
+#define TFT_OFFSET_ROTATION 3
 #define SCREEN_TRANSITION_FRAMERATE 5 // fps
 
 // Touchscreen CST226SE (Capacitive) --> addon
