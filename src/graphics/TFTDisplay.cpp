@@ -265,7 +265,7 @@ class LGFX : public lgfx::LGFX_Device
             cfg.freq_write = SPI_FREQUENCY; // SPI clock for transmission (up to 80MHz, rounded to the value obtained by dividing
                                             // 80MHz by an integer)
             cfg.freq_read = SPI_READ_FREQUENCY; // SPI clock when receiving
-            cfg.spi_3wire = false;
+            cfg.spi_3wire = true;
             cfg.use_lock = true;               // Set to true to use transaction locking
             cfg.dma_channel = SPI_DMA_CH_AUTO; // SPI_DMA_CH_AUTO; // Set DMA channel to use (0=not use DMA / 1=1ch / 2=ch /
                                                // SPI_DMA_CH_AUTO=auto setting)
@@ -293,7 +293,7 @@ class LGFX : public lgfx::LGFX_Device
             cfg.offset_x = TFT_OFFSET_X;               // Panel offset amount in X direction
             cfg.offset_y = TFT_OFFSET_Y;               // Panel offset amount in Y direction
             cfg.offset_rotation = TFT_OFFSET_ROTATION; // Rotation direction value offset 0~7 (4~7 is mirrored)
-            cfg.dummy_read_pixel = 9;                  // Number of bits for dummy read before pixel readout
+            cfg.dummy_read_pixel = 8;                  // Number of bits for dummy read before pixel readout
             cfg.dummy_read_bits = 1;                   // Number of bits for dummy read before non-pixel data read
             cfg.readable = true;                       // Set to true if data can be read
             cfg.invert = true;                         // Set to true if the light/darkness of the panel is reversed
