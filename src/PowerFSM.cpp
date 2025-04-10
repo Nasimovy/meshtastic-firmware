@@ -23,6 +23,13 @@
 #include "mesh/wifi/WiFiAPClient.h"
 #endif
 
+#if defined(MESHTASTIC_EXCLUDE_WIFI)
+bool isWifiAvailable()
+{
+    return false;
+}
+#endif
+
 #ifndef SLEEP_TIME
 #define SLEEP_TIME 30
 #endif

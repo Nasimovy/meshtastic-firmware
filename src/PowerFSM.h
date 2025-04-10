@@ -49,3 +49,7 @@ extern State stateON, statePOWER, stateSERIAL, stateDARK;
 
 void PowerFSM_setup();
 #endif
+
+#if MESHTASTIC_EXCLUDE_WIFI
+bool isWifiAvailable();
+#endif

@@ -3,8 +3,9 @@
 #define I2C_SDA 21
 #define I2C_SCL 22
 
+#define MESHTASTIC_EXCLUDE_WIFI 1
+
 // Display ST7796 (TFT) --> addon
-#define HAS_SCREEN 1
 #define SPI_FREQUENCY 40000000
 #define SPI_READ_FREQUENCY 16000000
 #define ST7796_SPI_HOST VSPI_HOST
@@ -22,9 +23,10 @@
 #define TFT_OFFSET_Y 0
 #define TFT_OFFSET_ROTATION 0
 #define SCREEN_TRANSITION_FRAMERATE 5 // fps
+#define VIEW_480x222
 
 // Touchscreen CST226SE (Capacitive) --> addon
-#define HAS_CST226SE
+// #define HAS_CST226SE
 
 #define BUTTON_PIN 38 // The middle button GPIO on the T-Beam
 // #define BUTTON_PIN_ALT 13 // Alternate GPIO for an external button if needed. Does anyone use this? It is not documented
