@@ -27,7 +27,7 @@ void InterruptableDelay::interrupt()
     semaphore.give();
 }
 
-IRAM_ATTR void InterruptableDelay::interruptFromISR(BaseType_t *pxHigherPriorityTaskWoken)
+void InterruptableDelay::interruptFromISR(BaseType_t *pxHigherPriorityTaskWoken)
 {
     semaphore.giveFromISR(pxHigherPriorityTaskWoken);
 }

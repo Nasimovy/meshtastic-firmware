@@ -53,7 +53,7 @@ RadioLibInterface::RadioLibInterface(LockingArduinoHal *hal, RADIOLIB_PIN_TYPE c
 #define YIELD_FROM_ISR(x) portYIELD_FROM_ISR(x)
 #endif
 
-void INTERRUPT_ATTR RadioLibInterface::isrLevel0Common(PendingISR cause)
+void RadioLibInterface::isrLevel0Common(PendingISR cause)
 {
     instance->disableInterrupt();
 
@@ -66,12 +66,12 @@ void INTERRUPT_ATTR RadioLibInterface::isrLevel0Common(PendingISR cause)
     YIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
-void INTERRUPT_ATTR RadioLibInterface::isrRxLevel0()
+void RadioLibInterface::isrRxLevel0()
 {
     isrLevel0Common(ISR_RX);
 }
 
-void INTERRUPT_ATTR RadioLibInterface::isrTxLevel0()
+void RadioLibInterface::isrTxLevel0()
 {
     isrLevel0Common(ISR_TX);
 }

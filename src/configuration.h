@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EXT_RAM_ATTR
 #endif
 #ifndef IRAM_ATTR
-#define IRAM_ATTR
+// #define IRAM_ATTR
 #endif
 #ifndef RTC_DATA_ATTR
 #define RTC_DATA_ATTR

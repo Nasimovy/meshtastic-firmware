@@ -196,7 +196,7 @@ bool RF95Interface::init()
     return res == RADIOLIB_ERR_NONE;
 }
 
-void INTERRUPT_ATTR RF95Interface::disableInterrupt()
+void RF95Interface::disableInterrupt()
 {
     lora->clearDio0Action();
 }

@@ -1,4 +1,6 @@
 // Based on the MPR121 Keyboard and Adafruit TCA8418 library
+#ifdef HAS_PMU
+
 #include "configuration.h"
 #include <Wire.h>
 
@@ -81,3 +83,5 @@ class TCA8418Keyboard
     i2c_com_fptr_t readCallback;
     i2c_com_fptr_t writeCallback;
 };
+
+#endif
