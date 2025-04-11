@@ -3,27 +3,57 @@
 #define I2C_SDA 21
 #define I2C_SCL 22
 
-#define MESHTASTIC_EXCLUDE_WIFI 1
+// #define MESHTASTIC_EXCLUDE_WIFI 1
+// #define MESHTASTIC_EXCLUDE_BLUETOOTH 1
+// #define MESHTASTIC_EXCLUDE_AUDIO 1
+// #define MESHTASTIC_EXCLUDE_DETECTIONSENSOR 1
+// #define MESHTASTIC_EXCLUDE_ENVIRONMENTAL_SENSOR 1
+// #define MESHTASTIC_EXCLUDE_POWER_TELEMETRY 1
+// #define MESHTASTIC_EXCLUDE_ATAK 1
 
 // Display ST7796 (TFT) --> addon
+// #define SPI_FREQUENCY 40000000
+// #define SPI_READ_FREQUENCY 16000000
+// #define ST7796_SPI_HOST VSPI_HOST
+// #define ST7796_SDA 14
+// #define ST7796_SCK 15
+// #define ST7796_CS 25
+// #define ST7796_RS 13
+// #define ST7796_RESET 2
+// #define ST7796_BACKLIGHT_EN 4
+// #define ST7796_BL 4
+// #define TFT_BL 4
+// #define TFT_HEIGHT 480
+// #define TFT_WIDTH 222
+// #define TFT_OFFSET_X 49
+// #define TFT_OFFSET_Y 0
+// #define TFT_OFFSET_ROTATION 0
+// #define SCREEN_TRANSITION_FRAMERATE 5 // fps
+// #define VIEW_480x222
+
+// Display (TFT)
+#define USE_ST7796
+#define ST7796_NSS 25
+#define ST7796_RS 13  // DC
+#define ST7796_SDA 14 // MOSI
+#define ST7796_SCK 15
+#define ST7796_RESET 2
+#define ST7796_MISO -1
+#define ST7796_BUSY -1
+#define VTFT_CTRL 7
+#define VTFT_LEDA 4
+#define TFT_BACKLIGHT_ON HIGH
+#define ST7796_SPI_HOST VSPI_HOST
 #define SPI_FREQUENCY 40000000
 #define SPI_READ_FREQUENCY 16000000
-#define ST7796_SPI_HOST VSPI_HOST
-#define ST7796_SDA 14
-#define ST7796_SCK 15
-#define ST7796_CS 25
-#define ST7796_RS 13
-#define ST7796_RESET 2
-#define ST7796_BACKLIGHT_EN 4
-#define ST7796_BL 4
-#define TFT_BL 4
-#define TFT_HEIGHT 480
-#define TFT_WIDTH 222
-#define TFT_OFFSET_X 49
+#define TFT_HEIGHT 222
+#define TFT_WIDTH 480
+#define TFT_OFFSET_X 0
 #define TFT_OFFSET_Y 0
-#define TFT_OFFSET_ROTATION 0
-#define SCREEN_TRANSITION_FRAMERATE 5 // fps
-#define VIEW_480x222
+// #define TFT_OFFSET_ROTATION 0
+// #define SCREEN_ROTATE
+// #define SCREEN_TRANSITION_FRAMERATE 5
+#define BRIGHTNESS_DEFAULT 100 // Medium Low Brightnes
 
 // Touchscreen CST226SE (Capacitive) --> addon
 // #define HAS_CST226SE
@@ -38,7 +68,7 @@
 
 // TTGO uses a common pinout for their SX1262 vs RF95 modules - both can be enabled and we will probe at runtime for RF95 and if
 // not found then probe for SX1262
-#define USE_RF95 // RFM95/SX127x
+// #define USE_RF95 // RFM95/SX127x
 #define USE_SX1262
 #define USE_SX1268
 

@@ -1,6 +1,4 @@
 // Based on the MPR121 Keyboard and Adafruit TCA8418 library
-#ifdef HAS_PMU
-
 #include "TCA8418Keyboard.h"
 #include "configuration.h"
 
@@ -560,4 +558,3 @@ void TCA8418Keyboard::writeRegister(uint8_t reg, uint8_t value)
         writeCallback(m_addr, data[0], &(data[1]), 1);
     }
 }
-#endif
