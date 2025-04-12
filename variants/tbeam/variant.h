@@ -47,9 +47,9 @@
 // Display addon
 #define HAS_TOUCHSCREEN 1
 #define USE_VIRTUAL_KEYBOARD 1
-#define HAS_CST226SE
+#define HAS_CST226SE 1
 #define SCREEN_TOUCH_INT 35
-#define USE_ST7796
+#define USE_ST7796 1
 #define ST7796_NSS 25
 #define ST7796_RS 13  // DC
 #define ST7796_SDA 14 // MOSI
