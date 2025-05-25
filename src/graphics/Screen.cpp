@@ -1524,7 +1524,7 @@ static void drawNodeInfo(OLEDDisplay *display, OLEDDisplayUiState *state, int16_
     screen->drawColumns(display, x, y, fields);
 }
 
-#if defined(ESP_PLATFORM) && (defined(USE_ST7789) || defined(USE_ST7796))
+#if defined(ESP_PLATFORM) && (defined(USE_ST7789))
 SPIClass SPI1(HSPI);
 #endif
 
@@ -1542,18 +1542,18 @@ Screen::Screen(ScanI2C::DeviceAddress address, meshtastic_Config_DisplayConfig_O
 #else
     dispdev = new ST7789Spi(&SPI1, ST7789_RESET, ST7789_RS, ST7789_NSS, GEOMETRY_RAWMODE, TFT_WIDTH, TFT_HEIGHT);
 #endif
-#elif defined(USE_ST7796)
-#ifdef ESP_PLATFORM
-    dispdev = new ST7796Spi(&SPI1, ST7796_RESET, ST7796_RS, ST7796_NSS, GEOMETRY_RAWMODE, TFT_WIDTH, TFT_HEIGHT, ST7796_SDA,
-                            ST7796_MISO, ST7796_SCK, TFT_SPI_FREQUENCY);
-#else
-    dispdev = new ST7796Spi(&SPI1, ST7796_RESET, ST7796_RS, ST7796_NSS, GEOMETRY_RAWMODE, TFT_WIDTH, TFT_HEIGHT);
-#endif
+// #elif defined(USE_ST7796)
+// #ifdef ESP_PLATFORM
+//     dispdev = new ST7796Spi(&SPI1, ST7796_RESET, ST7796_RS, ST7796_NSS, GEOMETRY_RAWMODE, TFT_WIDTH, TFT_HEIGHT, ST7796_SDA,
+//                             ST7796_MISO, ST7796_SCK, TFT_SPI_FREQUENCY);
+// #else
+//     dispdev = new ST7796Spi(&SPI1, ST7796_RESET, ST7796_RS, ST7796_NSS, GEOMETRY_RAWMODE, TFT_WIDTH, TFT_HEIGHT);
+// #endif
 #elif defined(USE_SSD1306)
     dispdev = new SSD1306Wire(address.address, -1, -1, geometry,
                               (address.port == ScanI2C::I2CPort::WIRE1) ? HW_I2C::I2C_TWO : HW_I2C::I2C_ONE);
 #elif defined(ST7735_CS) || defined(ILI9341_DRIVER) || defined(ILI9342_DRIVER) || defined(ST7701_CS) || defined(ST7789_CS) ||    \
-    defined(RAK14014) || defined(HX8357_CS) || defined(ILI9488_CS)
+    defined(RAK14014) || defined(HX8357_CS) || defined(ILI9488_CS) || defined(USE_ST7796)
     dispdev = new TFTDisplay(address.address, -1, -1, geometry,
                              (address.port == ScanI2C::I2CPort::WIRE1) ? HW_I2C::I2C_TWO : HW_I2C::I2C_ONE);
 #elif defined(USE_EINK) && !defined(USE_EINK_DYNAMICDISPLAY)
@@ -1627,7 +1627,7 @@ void Screen::handleSetOn(bool on, FrameCallback einkScreensaver)
             dispdev->displayOn();
 #endif
 
-#if defined(ST7789_CS) &&                                                                                                        \
+#if (defined(ST7789_CS) || defined(ST7796_CS)) &&                                                                                \
     !defined(M5STACK) // set display brightness when turning on screens. Just moved function from TFTDisplay to here.
             static_cast<TFTDisplay *>(dispdev)->setDisplayBrightness(brightness);
 #endif
@@ -1692,21 +1692,21 @@ void Screen::handleSetOn(bool on, FrameCallback einkScreensaver)
             nrf_gpio_cfg_default(ST7789_NSS);
 #endif
 #endif
-#ifdef USE_ST7796
-            SPI1.end();
-#if defined(ARCH_ESP32)
-            pinMode(VTFT_LEDA, OUTPUT);
-            digitalWrite(VTFT_LEDA, LOW);
-            pinMode(ST7796_RESET, ANALOG);
-            pinMode(ST7796_RS, ANALOG);
-            pinMode(ST7796_NSS, ANALOG);
-#else
-            nrf_gpio_cfg_default(VTFT_LEDA);
-            nrf_gpio_cfg_default(ST7796_RESET);
-            nrf_gpio_cfg_default(ST7796_RS);
-            nrf_gpio_cfg_default(ST7796_NSS);
-#endif
-#endif
+            // #ifdef USE_ST7796
+            //             SPI1.end();
+            // #if defined(ARCH_ESP32)
+            //             pinMode(VTFT_LEDA, OUTPUT);
+            //             digitalWrite(VTFT_LEDA, LOW);
+            //             pinMode(ST7796_RESET, ANALOG);
+            //             pinMode(ST7796_RS, ANALOG);
+            //             pinMode(ST7796_NSS, ANALOG);
+            // #else
+            //             nrf_gpio_cfg_default(VTFT_LEDA);
+            //             nrf_gpio_cfg_default(ST7796_RESET);
+            //             nrf_gpio_cfg_default(ST7796_RS);
+            //             nrf_gpio_cfg_default(ST7796_NSS);
+            // #endif
+            // #endif
 
 #ifdef T_WATCH_S3
             PMU->disablePowerOutput(XPOWERS_ALDO2);
@@ -1796,12 +1796,12 @@ void Screen::setup()
     // flip it. If you have a headache now, you're welcome.
     if (!config.display.flip_screen) {
 #if defined(ST7701_CS) || defined(ST7735_CS) || defined(ILI9341_DRIVER) || defined(ILI9342_DRIVER) || defined(ST7701_CS) ||      \
-    defined(ST7789_CS) || defined(RAK14014) || defined(HX8357_CS) || defined(ILI9488_CS)
+    defined(ST7789_CS) || defined(RAK14014) || defined(HX8357_CS) || defined(ILI9488_CS) || defined(USE_ST7796)
         static_cast<TFTDisplay *>(dispdev)->flipScreenVertically();
 #elif defined(USE_ST7789)
         static_cast<ST7789Spi *>(dispdev)->flipScreenVertically();
-#elif defined(USE_ST7796)
-        static_cast<ST7796Spi *>(dispdev)->mirrorScreen();
+// #elif defined(USE_ST7796)
+//         static_cast<ST7796Spi *>(dispdev)->mirrorScreen();
 #else
         dispdev->flipScreenVertically();
 #endif
@@ -2362,7 +2362,7 @@ void Screen::increaseBrightness()
 {
     brightness = ((brightness + 62) > 254) ? brightness : (brightness + 62);
 
-#if defined(ST7789_CS)
+#if defined(ST7789_CS) || defined(ST7796_CS)
     // run the setDisplayBrightness function. This works on t-decks
     static_cast<TFTDisplay *>(dispdev)->setDisplayBrightness(brightness);
 #endif
@@ -2374,7 +2374,7 @@ void Screen::decreaseBrightness()
 {
     brightness = (brightness < 70) ? brightness : (brightness - 62);
 
-#if defined(ST7789_CS)
+#if defined(ST7789_CS) || defined(ST7796_CS)
     static_cast<TFTDisplay *>(dispdev)->setDisplayBrightness(brightness);
 #endif
 
