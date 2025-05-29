@@ -54,31 +54,15 @@
 #define SDCARD_CS SD_CS
 #define SD_SPI_FREQUENCY 75000000U
 
-#define BATTERY_PIN 4 // A battery voltage measurement pin, voltage divider connected here to measure battery voltage
-// ratio of voltage divider = 2.0 (RD2=100k, RD3=100k)
-#define ADC_MULTIPLIER 2.11 // 2.0 + 10% for correction of display undervoltage.
-#define ADC_CHANNEL ADC1_GPIO4_CHANNEL
+#define HAS_RTC 1
 
 // keyboard
 #define I2C_SDA 3 // I2C pins for this board
 #define I2C_SCL 2
 // #define KB_POWERON 10                  // must be set to HIGH needs changing to XL9555
-#define KB_SLAVE_ADDRESS TDECK_KB_ADDR // 0x55
-#define KB_BL_PIN 46                   // not used for now
+#define KB_SLAVE_ADDRESS XPOWERS_AXP192_AXP2101_ADDRESS // 0x34
+#define KB_BL_PIN 46                                    // not used for now
 #define CANNED_MESSAGE_MODULE_ENABLE 1
-
-// microphone
-#define ES7210_SCK 47
-#define ES7210_DIN 14
-#define ES7210_LRCK 21
-#define ES7210_MCLK 48
-
-// dac / amp
-#define HAS_I2S
-#define DAC_I2S_BCK 7
-#define DAC_I2S_WS 5
-#define DAC_I2S_DOUT 6
-#define DAC_I2S_MCLK 21 // GPIO lrck mic
 
 // LoRa
 #define USE_SX1262
