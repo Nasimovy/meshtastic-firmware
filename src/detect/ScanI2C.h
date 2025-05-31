@@ -42,7 +42,7 @@ class ScanI2C
         MPU6050,            // 0x68
         LIS3DH,             // 0x18 or 0x19 --> same as MCP9808 and ES8311 and STK8BAXX
         BMA423,             // 0x19
-        BQ24295,            // 0x6B
+        BQ24295,            // 0x6B --> same as QMI8658 and BQ25896
         LSM6DS3,            // 0x6A
         TCA9535,            // 0x20 --> same as XL9555
         TCA9555,            // 0x26
@@ -74,7 +74,7 @@ class ScanI2C
         PCT2075,            // 0x37
         BHI260AP,           // 0x28
         XL9555,             // 0x20 --> same as TCA9535
-        BQ25896,            // 0x6B --> same as QMI8658 and BQ24295
+        BQ25896,            // 0x6B --> same as QMI8658 and BQ24295 and LSM6DS3
         BQ27220,            // 0x55 --> same as TDECKKB
         ES8311,             // 0x18 --> same as MCP9808 and LIS3DH and STK8BAXX
     } DeviceType;

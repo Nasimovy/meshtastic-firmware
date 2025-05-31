@@ -206,7 +206,17 @@ void ScanI2CTwoWire::scanPort(I2CPort port, uint8_t *address, uint8_t asize)
                 }
                 break;
 
-                SCAN_SIMPLE_CASE(TDECK_KB_ADDR, TDECKKB, "T-Deck keyboard", (uint8_t)addr.address);
+            case TDECK_KB_ADDR:
+                registerValue = getRegisterValue(ScanI2CTwoWire::RegisterLocation(addr, 0x23), 2);
+                if (registerValue == 0x0220) {
+                    logFoundDevice("BQ27220", (uint8_t)addr.address);
+                    type = BQ27220;
+                } else {
+                    logFoundDevice("T-Deck keyboard", (uint8_t)addr.address);
+                    type = TDECKKB;
+                }
+                break;
+
                 SCAN_SIMPLE_CASE(BBQ10_KB_ADDR, BBQ10KB, "BB Q10", (uint8_t)addr.address);
 
                 SCAN_SIMPLE_CASE(ST7567_ADDRESS, SCREEN_ST7567, "ST7567", (uint8_t)addr.address);
@@ -352,6 +362,10 @@ void ScanI2CTwoWire::scanPort(I2CPort port, uint8_t *address, uint8_t asize)
                     if (registerValue == 0x3300 || registerValue == 0x3333) { // RAK4631 WisBlock has LIS3DH register at 0x3333
                         type = LIS3DH;
                         logFoundDevice("LIS3DH", (uint8_t)addr.address);
+                    } else {
+                        type = ES8311;
+                        logFoundDevice("ES8311", (uint8_t)addr.address);
+                        break;
                     }
                     break;
                 }
@@ -400,9 +414,15 @@ void ScanI2CTwoWire::scanPort(I2CPort port, uint8_t *address, uint8_t asize)
                 if (registerValue == 0x6A) {
                     type = LSM6DS3;
                     logFoundDevice("LSM6DS3", (uint8_t)addr.address);
-                } else {
+                    break;
+                }
+                registerValue = getRegisterValue(ScanI2CTwoWire::RegisterLocation(addr, 0x00), 1); // get ID
+                if (registerValue == 0x05) {
                     type = QMI8658;
                     logFoundDevice("QMI8658", (uint8_t)addr.address);
+                } else {
+                    type = BQ25896;
+                    logFoundDevice("BQ25896", (uint8_t)addr.address);
                 }
                 break;
 
