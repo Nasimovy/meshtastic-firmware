@@ -8,70 +8,70 @@ class ScanI2C
   public:
     typedef enum DeviceType {
         NONE,
-        SCREEN_SSD1306,
-        SCREEN_SH1106,
-        SCREEN_UNKNOWN, // has the same address as the two above but does not respond to the same commands
-        SCREEN_ST7567,
-        RTC_RV3028,
-        RTC_PCF8563,
-        CARDKB,
-        TDECKKB,
-        BBQ10KB,
-        RAK14004,
-        PMU_AXP192_AXP2101, // has the same adress as the TCA8418KB
-        BME_680,
-        BME_280,
-        BMP_280,
-        BMP_085,
-        BMP_3XX,
-        INA260,
-        INA219,
-        INA3221,
-        MAX17048,
-        MCP9808,
-        SHT31,
-        SHT4X,
-        SHTC3,
-        LPS22HB,
-        QMC6310,
-        QMI8658,
-        QMC5883L,
-        HMC5883L,
-        PMSA0031,
-        QMA6100P,
-        MPU6050,
-        LIS3DH,
-        BMA423,
-        BQ24295,
-        LSM6DS3,
-        TCA9535,
-        TCA9555,
-        VEML7700,
-        RCWL9620,
-        NCP5623,
-        LP5562,
-        TSL2591,
-        OPT3001,
-        MLX90632,
-        MLX90614,
-        AHT10,
-        BMX160,
-        DFROBOT_LARK,
-        NAU7802,
-        FT6336U,
-        STK8BAXX,
-        ICM20948,
-        MAX30102,
-        TPS65233,
-        MPR121KB,
-        CGRADSENS,
-        INA226,
-        NXP_SE050,
-        DFROBOT_RAIN,
-        DPS310,
-        LTR390UV,
-        TCA8418KB,
-        PCT2075,
+        SCREEN_SSD1306,     // 0x3C
+        SCREEN_SH1106,      // 0x3C
+        SCREEN_UNKNOWN,     // 0x3C --> same address as the two above but does not respond to the same commands
+        SCREEN_ST7567,      // 0x3F
+        RTC_RV3028,         // 0x52
+        RTC_PCF8563,        // 0x51
+        CARDKB,             // 0x5F --> has the same address as RAK14004 but different register values
+        TDECKKB,            // 0x55
+        BBQ10KB,            // 0x1F
+        RAK14004,           // 0x5F --> has the same address as CARDKB but different register values
+        PMU_AXP192_AXP2101, // 0x34 --> has the same adress as the TCA8418KB
+        BME_680,            // 0x76 or 0x77
+        BME_280,            // 0x76 or 0x77
+        BMP_280,            // 0x76 or 0x77
+        BMP_085,            // 0x76 or 0x77
+        BMP_3XX,            // 0x76 or 0x77
+        INA260,             // 0x40
+        INA219,             // 0x40
+        INA3221,            // 0x42
+        MAX17048,           // 0x36
+        MCP9808,            // 0x
+        SHT31,              // 0x
+        SHT4X,              // 0x
+        SHTC3,              // 0x
+        LPS22HB,            // 0x
+        QMC6310,            // 0x
+        QMI8658,            // 0x
+        QMC5883L,           // 0x
+        HMC5883L,           // 0x
+        PMSA0031,           // 0x
+        QMA6100P,           // 0x
+        MPU6050,            // 0x68
+        LIS3DH,             // 0x18 or 0x19
+        BMA423,             // 0x19
+        BQ24295,            // 0x6B
+        LSM6DS3,            // 0x6A
+        TCA9535,            // 0x20
+        TCA9555,            // 0x26
+        VEML7700,           // 0x10
+        RCWL9620,           // 0x10
+        NCP5623,            // 0x38
+        LP5562,             // 0x30
+        TSL2591,            // 0x29
+        OPT3001,            // 0x45 or 0x44
+        MLX90632,           // 0x3A
+        MLX90614,           // 0x
+        AHT10,              // 0x38
+        BMX160,             // 0x69
+        DFROBOT_LARK,       // 0x42
+        NAU7802,            // 0x2A
+        FT6336U,            // 0x48
+        STK8BAXX,           // 0x3A
+        ICM20948,           // 0x69 or 0x68
+        MAX30102,           // 0x57
+        TPS65233,           // 0x60
+        MPR121KB,           // 0x5A
+        CGRADSENS,          // 0x66
+        INA226,             // 0x40
+        NXP_SE050,          // 0x48
+        DFROBOT_RAIN,       // 0x1d
+        DPS310,             // 0x77
+        LTR390UV,           // 0x53
+        TCA8418KB,          // 0x34 --> same as PMU_AXP192_AXP2101
+        PCT2075,            // 0x37
     } DeviceType;
 
     // typedef uint8_t DeviceAddress;
